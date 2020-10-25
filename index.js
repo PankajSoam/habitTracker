@@ -1,7 +1,7 @@
 const express = require('express');
-const { populate } = require('../Codial1/models/user');
 const app = express();
 const port = 8000;
+const db = require('./config/mongoose');
 
 
 //use express router
