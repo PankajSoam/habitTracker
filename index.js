@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const port = 8000;
+const habit = require('./models/user');
 const db = require('./config/mongoose');
 
+
+app.use(express.urlencoded());
 
 //use express router
 app.use('/',require('./routes'));

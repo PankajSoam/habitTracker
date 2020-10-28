@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+    </head>
+    <body>
+        <form action="/add-habit" method="POST">
+            <input type="text" name="habitName" id="" placeholder="Habit" required>
+            <textarea name="habitNote" id="" cols="30" rows="5" placeholder="Add note to habit" required></textarea>
+            <input type="radio" id="black" name="color" value="black" checked="checked">
+            <label for="black"></label>
+
+            <input type="radio" id="blue" name="color" value="blue">
+            <label for="blue"></label>
+
+            <input type="radio" id="green" name="color" value="green">
+            <label for="green"></label>
+
+            <input type="radio" id="yellow" name="color" value="yellow">
+            <label for="yellow"></label>
+            
+            <button type="submit">add</button>
+        </form>
+        
+    </body>
+</html>

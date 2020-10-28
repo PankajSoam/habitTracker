@@ -3,6 +3,11 @@
         <title><%= title %></title>
     </head>
     <body>
-        <h1>home view</h1>
+        <h1>Welcome <%= title%></h1>
+        <p><%= habits.length%></p>
+        <a href="/today-habit-page"><button disabled>todays Habit</button></a>
+        <a href="/add-habit-page"><button>add Habit</button></a>
+        <a href="/habit-list-page"> <button> habit list</button></a>
+
     </body>
 </html>
