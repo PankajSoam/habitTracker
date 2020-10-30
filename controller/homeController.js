@@ -29,6 +29,14 @@ module.exports.homePage = function(req,res){
         //if found then render habits
         else if(user){
 
+            let todaysDate = moment().format('DD/MM/YYYY');
+            for(let i =0;i<user.habits.length;i++){
+               let todaysDatePresent= user.habits[i].habitRecord.find(x => x.Date ===todaysDate);
+                    if(todaysDatePresent==undefined){
+                        db.collection('users').update({userName: "Pankaj"},
+                        {"$push": "habits.$."});
+                    }
+            }
             
             
             console.log("******default user exists******");
@@ -39,7 +47,7 @@ module.exports.homePage = function(req,res){
 
         }
     });
-    
+
 }
 
 
@@ -54,29 +62,30 @@ module.exports.addHabitPage= function(req,res){
 }
 
 // add habit function
-module.exports.addHabit=function(req,res){
+module.exports.addHabit = function(req,res){
     console.log(req.body);
 
     //last 7 days for new habit
     
     var last7Days=[];
-    for(let i=0;i<7;i++){
-       let date = moment().subtract(i,'days');
-       let dateObject = {
-           Date : date.format('DD/MM/YYYY'),
-           status : 0
-       }
+        for(let i=0;i<7;i++){
+            let date = moment().subtract(i,'days');
+            let dateObject = {
+                Date : date.format('DD/MM/YYYY'),
+                status : 0
+            }
        last7Days.push(dateObject);
-    }
+        }
     console.log(last7Days);
-     
+    
+    
 // push to mongodb
     db.collection('users').findOneAndUpdate({userName: "Pankaj"},
     {$push : {habits: {
             habitName: req.body.habitName,
               note   : req.body.habitNote,
               color  : req.body.color,
-              habitRecord: [last7Days] 
+              habitRecord: last7Days 
         }}});
 
         console.log('************* new habit created ***********');
@@ -85,10 +94,10 @@ module.exports.addHabit=function(req,res){
    
 }
 
+
+ //render today habit page/home page
 module.exports.todayHabitPage= function(req,res){
-    return res.render('todays_habit',{
-        title: "todays Habit"
-    })
+    return res.redirect('/')
 }
 
 module.exports.habitListPage= function(req,res){

@@ -5,6 +5,15 @@
     <body>
         <h1>Welcome <%= title%></h1>
         <p><%= habits.length%></p>
+        <ul> 
+            <% for(let i = 0;i<habits.length;i++){ %>
+                <li> 
+                    <a href=""><%= habits[i].habitRecord[0].status %></a> 
+                    <h2><%= habits[i].habitName %></h2>
+                    <p> <%= habits[i].note %> </p>
+                </li>  
+           <% } %>
+        </ul>
         <a href="/today-habit-page"><button disabled>todays Habit</button></a>
         <a href="/add-habit-page"><button>add Habit</button></a>
         <a href="/habit-list-page"> <button> habit list</button></a>
