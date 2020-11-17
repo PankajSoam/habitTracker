@@ -1,5 +1,2 @@
 # habitTracker
-
-
-
 Still incomplete
