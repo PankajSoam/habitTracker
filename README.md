@@ -1,4 +1,3 @@
 # habitracker
 .
-.
 Still incomplete
